@@ -30,11 +30,11 @@ To try out the robot arm using IRB:
 
 Then enter the following:
 
-  require './robotic_arm'
+    require './robotic_arm'
 
-  arm = RoboticArm.new
+    arm = RoboticArm.new
 
-  arm.perform_action(RoboticArm::BASE_LEFT, 1)
-  arm.perform_action(RoboticArm::BASE_RIGHT, 1)
+    arm.perform_action(RoboticArm::BASE_LEFT, 1)
+    arm.perform_action(RoboticArm::BASE_RIGHT, 1)
 
-  arm.close
+    arm.close
