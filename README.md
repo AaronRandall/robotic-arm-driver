@@ -8,22 +8,33 @@ Robotic arm driver written in Ruby, for the Maplin Robotic Arm (http://www.mapli
     cd robotic-arm-driver
     bundle install
 
+Then create a udev rule for the robotic arm:
+
     sudo vi /etc/udev/rules.d/85-robotarm.rules 
 
-and add: 
+With the following content: 
 
     SUBSYSTEM=="usb", ATTRS{idVendor}=="1267", ATTRS{idProduct}=="0000", ACTION=="add", GROUP="plugdev", MODE="0666"
 
-    sudo usermod -aG plugdev pi
+Add your user to the plugdev group:
 
-reboot the pi
+    sudo usermod -aG plugdev [YOUR_USERNAME]
+
+And finally, reboot the Raspberry Pi to apply the changes.
 
 ## Example usage
-require 'robotic_arm'
+To try out the robot arm using IRB:
 
-arm = RoboticArm.new
+    cd robotic-arm-driver
+    irb
 
-arm.perform_action(RoboticArm::BASE_LEFT, 1)
-arm.perform_action(RoboticArm::BASE_RIGHT, 1)
+Then enter the following:
 
-arm.close
+  require './robotic_arm'
+
+  arm = RoboticArm.new
+
+  arm.perform_action(RoboticArm::BASE_LEFT, 1)
+  arm.perform_action(RoboticArm::BASE_RIGHT, 1)
+
+  arm.close
